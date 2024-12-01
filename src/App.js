@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client"
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -11,6 +11,18 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 const styleCard = {
     backgroundColor: "#f0f0f0"
 }
+
+// Chunking
+// Code Splitting
+// Dynamic Bundling
+// Lazy loading
+// On Demand loading
+
+// lazy it takes some time to import that component, it will gives error in that time
+// Suspense is used for not to throw error, its telling that wait i will come
+// fallback is for show something in that loading time
+
+const Grocery = lazy(()=> import("./components/Grocery"));
 
 const AppLayout = () => {
     return (
@@ -41,6 +53,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restaurant/:resId",
                 element: <RestaurantMenu/>
+            },
+            {
+                path: "/grocery",
+                element: <Suspense ><Grocery/></Suspense>
             }
         ],
         errorElement: <Error />

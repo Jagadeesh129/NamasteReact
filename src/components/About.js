@@ -1,8 +1,14 @@
-const About = ()=>{
+import User from "./User";
+import UserClass from "./UserClass";
+
+const About = () => {
     return (
         <div>
-            <h1>About Page</h1>
-            <p>Hi Hello Welcome all</p>
+            <User name={"Jagadeesh"} />
+
+            <div>Class Based Component</div>
+            <hr/>
+            <UserClass name={"Jagadeesh"} />
         </div>
     )
 }
