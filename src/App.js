@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, useState, Suspense, useEffect } from "react";
 import ReactDOM from "react-dom/client"
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,6 +7,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import UserContext from "./utils/UserContext";
 
 const styleCard = {
     backgroundColor: "#f0f0f0"
@@ -25,11 +26,23 @@ const styleCard = {
 const Grocery = lazy(()=> import("./components/Grocery"));
 
 const AppLayout = () => {
+
+    const [username, setUsername] = useState();
+
+    useEffect(()=>{
+        const data = {
+            name: "Mamilla Jagadeesh",
+        };
+        setUsername(data.name);
+    },[]);
+
     return (
+        <UserContext.Provider value = {{loggedInUser : username, setUsername}}>
         <div className="app">
             <Header />
             <Outlet/>
         </div>
+        </UserContext.Provider>
     )
 };
 

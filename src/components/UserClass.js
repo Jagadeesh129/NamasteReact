@@ -1,5 +1,7 @@
 import { count } from "console";
 import React from "react";
+import UserContext from "../utils/UserContext";
+
 class UserClass extends React.Component {
 
     constructor(props){
@@ -36,6 +38,12 @@ class UserClass extends React.Component {
                 <h2>Name: {this.props.name}</h2>
                 <h3>Location: Andhra</h3>
                 <h4>Contact: @mjagadeesh129</h4>
+                <div>
+                    LoggedIn User
+                    <UserContext.Consumer>
+                        { (data) => <h1>{data.loggedInUser}</h1>}
+                    </UserContext.Consumer>
+                </div>
             </div>
         )
     }

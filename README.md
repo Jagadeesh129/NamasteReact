@@ -26,3 +26,12 @@ Footer - Copyright, Links, Address, ContactInfo
 Two types of routing
 1. clientside routing
 2. Server side routing 
+
+Higher Order Component(Function)
+    -> Takes input as component
+    -> Enhances the component
+    -> Returns component
+
+Control and UnControl components
+
+Props Drilling
