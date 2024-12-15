@@ -8,10 +8,9 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import UserContext from "./utils/UserContext";
-
-const styleCard = {
-    backgroundColor: "#f0f0f0"
-}
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 // Chunking
 // Code Splitting
@@ -23,26 +22,28 @@ const styleCard = {
 // Suspense is used for not to throw error, its telling that wait i will come
 // fallback is for show something in that loading time
 
-const Grocery = lazy(()=> import("./components/Grocery"));
+const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
 
     const [username, setUsername] = useState();
 
-    useEffect(()=>{
+    useEffect(() => {
         const data = {
             name: "Mamilla Jagadeesh",
         };
         setUsername(data.name);
-    },[]);
+    }, []);
 
     return (
-        <UserContext.Provider value = {{loggedInUser : username, setUsername}}>
-        <div className="app">
-            <Header />
-            <Outlet/>
-        </div>
-        </UserContext.Provider>
+        <Provider store={appStore}>
+            <UserContext.Provider value={{ loggedInUser: username, setUsername }}>
+                <div className="app">
+                    <Header />
+                    <Outlet />
+                </div>
+            </UserContext.Provider>
+        </Provider>
     )
 };
 
@@ -65,11 +66,15 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/restaurant/:resId",
-                element: <RestaurantMenu/>
+                element: <RestaurantMenu />
             },
             {
                 path: "/grocery",
-                element: <Suspense ><Grocery/></Suspense>
+                element: <Suspense ><Grocery /></Suspense>
+            },
+            {
+                path: "/cart",
+                element: <Cart/>
             }
         ],
         errorElement: <Error />

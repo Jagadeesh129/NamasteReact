@@ -8,11 +8,11 @@ const RestaurantMenu = () => {
 
     let { resId } = useParams();
 
-    const [showIndex,setShowIndex] = useState(null);
+    const [showIndex,setShowIndex] = useState(0);
 
     const resInfo = useRestaurantMenu(resId);
     const restaurantDetails = resInfo?.cards[2]?.card?.card?.info;
-    console.log(resInfo);
+    // console.log(resInfo);
     const name = restaurantDetails?.name;
     const cuisines = restaurantDetails?.cuisines;
     const costForTwo = restaurantDetails?.costForTwo;

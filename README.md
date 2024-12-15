@@ -35,3 +35,16 @@ Higher Order Component(Function)
 Control and UnControl components
 
 Props Drilling
+
+Redux is separate library not a part of react
+Zustand, redux are used for state management
+
+Redux offers easy debugging
+
+#Redux Tool Kit
+    -Install @Reduxjs/ToolKit and react-redux
+    -Build our store
+    -Connect our store to our app
+    -Slice (cart slice)
+    -Dispatch action
+    -Selector
